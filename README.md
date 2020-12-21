@@ -35,16 +35,6 @@ the script can select your app to deploy.
 
 
 
-PERSONAL SETTINGS
-
-1. In the root directory you can find a file called 'globalvariables.json'. In this file a couple of attributes are defined. A couple of variables
-define the timeoutlength (wait untill a certain element appears on the page before trowing an error). If you experience any errors while running the script,
-try making these numbers bigger. The sprinter environment sometimes loads slow so a timeout could happen.
-2. by default it deploys to the acceptance environment. if you want to deploy to the 'test' or 'production' environment you can change the 'environment' attribute's value. 
-3. by default the script opens a browser so you can see what happens exactly. If you don't want this to happen you can change the 'showProcesInBrowser' attribute to false.
-4. if your appname by default uses of the '_' character then you need to define another 'charToReplaceSpace'. You can do this overhere aswell.
-
-
 
 
 RUN THE PROGRAM
