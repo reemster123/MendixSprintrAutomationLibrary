@@ -1,0 +1,12 @@
+{
+    "longProcesTimeout": 900000, 
+    "standardDelayAfterFunction": 2000,
+    "standardDelayAfterPageLoad": 5000,
+    "standardTimeOutWFS": 60000, 
+    "extendedTimeOutWFS": 300000,
+    "showProcesInBrowser": true, 
+    "environment": "acceptance", 
+    "charToReplaceSpace": "_",
+    "myappsUrl": "https://sprintr.home.mendix.com/link/myapps"
+}
+
