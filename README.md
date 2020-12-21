@@ -8,8 +8,8 @@ Install Node on your computer: https://nodejs.org/en/download/
 
 step 2:
 
-Open CMD (windows) or Terminal (Mac) and go to the folder of the deploybot.
-example 'cd desktop/programming/deploybot
+Open CMD (windows) or Terminal (Mac) and go to the folder of the mendixdeploybot.
+example 'cd desktop/programming/mendixdeploybot
 
 step 3:
 
@@ -35,31 +35,46 @@ the script can select your app to deploy.
 
 
 
+PERSONAL SETTINGS
+
+1. In the root directory you can find a file called 'globalvariables.json'. In this file a couple of attributes are defined. A couple of variables
+define the timeoutlength (wait untill a certain element appears on the page before trowing an error). If you experience any errors while running the script,
+try making these numbers bigger. The sprinter environment sometimes loads slow so a timeout could happen.
+2. by default it deploys to the acceptance environment. if you want to deploy to the 'test' or 'production' environment you can change the 'environment' attribute's value. 
+3. by default the script opens a browser so you can see what happens exactly. If you don't want this to happen you can change the 'showProcesInBrowser' attribute to false.
+4. if your appname by default uses of the '_' character then you need to define another 'charToReplaceSpace'. You can do this overhere aswell.
+
+
+
+
 RUN THE PROGRAM
 
-you can run the program from the commandline from the directory where the index.js file is located.
+You can run the script from the commandline from the directory where the index.js file is located.
 The file uses two extra parameters [appname] and [branchename] so the command will look like this:
 
-(..)/deploybot$ node index.js [appname] [branchename]
+(..)/mendixdeploybot$ node index.js [appname] [branchename]
 
 please note that the appname nor branchename can have spaces inbetween, because else those separate words of the branche or appname will be 
-interpreted as separate parameters. So instead of a ' ' you have to type a '_'. So 'my branche name' needs to be typed as 'my_brance_name'
+interpreted as separate parameters. So instead of a ' ' you have to type a '_'. So 'my branche name' needs to be typed as 'my_brance_name'.
 
 
 
-HAVING ERRORS?
 
-The first 8 lines on the index.js file contain a couple of constants which you can adjust. These mostly define howlong a timeout should take 
-(how long it needs to wait for a certain value on the page to appear, before an error is thrown). The sprinter environment is not really known
-for its great responsiveness, so try to make these values a bit bigger. Also if you think everything works to slow, you can also make these values
-smaller. 
+PERSONAL SETTINGS (and in case of errors, read this)
+
+1. In the root directory you can find a file called 'globalvariables.json'. In this file a couple of attributes are defined. A couple of variables
+define the timeoutlength (wait untill a certain element appears on the page before trowing an error). If you experience any errors while running the script,
+try making these numbers bigger. The sprinter environment sometimes loads slow so a timeout could happen.
+2. by default it deploys to the acceptance environment. if you want to deploy to the 'test' or 'production' environment you can change the 'environment' attribute's value. 
+3. by default the script opens a browser so you can see what happens exactly. If you don't want this to happen you can change the 'showProcesInBrowser' attribute to false.
+4. if your appname by default uses the '_' character then you need to define another 'charToReplaceSpace'. You can do this overhere aswell.
 
 
-OTHER SETTINGS:
 
-By default it deploys to the 'acceptance' environment, this can be changed to 'test' or 'production' with the const 'environment' on line 8 in the index.js file.
-Note that if production has google autenticator, this script will not work. 
-By default a chromium browser will open so you can look at whats happening. You can change this by setting the const 'showProcesInBrowser' \
-const to false on line 7 in the index.js file
 
+LIMITATIONS & KNOWN BUGS
+
+1. If the sprinter environment itself encountered an error (like: "there was an error restarting the app") This wil not be handled. Since this should not occur 99% of the time.
+2. After uploading a package, the sprinter environment sometimes fails to refresh so it could timeout on finding the 'deploy' button.
+ 
  
