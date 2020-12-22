@@ -74,21 +74,13 @@ module.exports = async function(page) {
             await gf.delay(gv.standardDelayAfterPageLoad);
             await page.waitForSelector('.cloud-environment-mode');
             await page.evaluate((env)=> {
-                const environments = document.querySelectorAll('.cloud-environment-mode');
-                console.info('found environments: '+environments[1].innerText);
-                loop1:
-                for (let i = 0; i<environments.length; i++) {
-                    if (environments[i].innerText.toLowerCase() === env) {
-                        const buttons = environments[i].closest('tr').getElementsByTagName('button');
-                loop2:
-                        for (let r = 0; r < buttons.length; r++) {
-                            if (buttons[r].innerText.toLowerCase() === 'details') {
-                                buttons[r].click();
-                                break loop1;
-                            }
-                        }       
-                    }
-                }
+                let environments = document.querySelectorAll('.cloud-environment-mode');
+                environments = Array.from(environments);    
+                const rightEnv = environments.find(el => el.innerText.toLowerCase() === env);
+                let buttons = rightEnv.closest('tr').getElementsByTagName('button');
+                buttons = Array.from(buttons);
+                const rightButton = buttons.find(el => el.innerText.toLowerCase() === 'details');
+                rightButton.click();
             }, gv.environment);
 
             console.log('clicked details on '+gv.environment+' environment...');
