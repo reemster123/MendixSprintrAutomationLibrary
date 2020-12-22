@@ -9,6 +9,7 @@ module.exports = async function(appName, page) {
         console.log('searching for app with name: '+ appName+'...');
         const appfound = await page.evaluate((name) => {
             let appCards = document.querySelectorAll('.page-apps__card');
+            appCards = Array.from(appCards);
             const el = appCards.find(card => card.getElementsByTagName('p')[0].innerText.toLowerCase() === name);
             if (typeof el !== 'undefined') {
                 el.click();
