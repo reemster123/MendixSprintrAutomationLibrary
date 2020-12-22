@@ -1,8 +1,13 @@
+// import genericFunctions and globalVariables
 const gf = require('./mainfunctions/genericfunctions.js');
 const gv = require('./globalvariables.json');
+
+// import puppeteer for handing the browser
 const puppeteer = require('puppeteer');
-const appName = process.argv[2].toLowerCase().split(gv.charToReplaceSpace).join(' ');
-const brancheName = process.argv[3].toLowerCase().split(gv.charToReplaceSpace).join(' ');
+
+// get arguments from commandline
+const appName = parseArgumentForIndex(2);
+const brancheName = parseArgumentForIndex(3);
 console.log('Appname: '+appName);
 console.log('Branchename: '+brancheName);
 
@@ -10,7 +15,7 @@ main();
   
 async function main() { 
     try {
-        //open a browser and setup the page and view
+        //open a browser and setup the page and viewport
         console.log('Opening browser...');
         const browser = await puppeteer.launch({headless: !gv.showProcesInBrowser});
         const page = await browser.newPage();
@@ -30,7 +35,7 @@ async function main() {
             await gf.delay(gv.standardDelayAfterPageLoad);
 
             // Create deployment package
-            const packageUploaded = await require('./mainfunctions/uploadpackage.js')(brancheName, page);
+            const packageUploaded =  true;//await require('./mainfunctions/uploadpackage.js')(brancheName, page);
             await gf.delay(gv.standardDelayAfterPageLoad);
     
             if (packageUploaded) {
@@ -62,6 +67,11 @@ async function selectDeployablePackage(page) {
         const deploybutton = document.querySelectorAll('.gv_table')[0].getElementsByClassName('gv_row')[0].getElementsByClassName('gv_cell_Actions')[0].children[0].children[0].children[0];
         deploybutton.click();
     });                    
+}
+
+function parseArgumentForIndex(i) {
+    return process.argv[i].toLowerCase().split(gv.charToReplaceSpace).join(' ');
+
 }
 
 async function shutdown(page, browser) {
