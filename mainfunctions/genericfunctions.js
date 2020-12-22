@@ -83,6 +83,10 @@ module.exports = {
             return IsSelected; 
         }, rowTitle, dvSelector);
     return rowSelected; 
+    },
+    
+    parseArgumentForIndex: function(i) {
+        return process.argv[i].toLowerCase().split(gv.charToReplaceSpace).join(' ');
     }
     //  *** extra functions here... ***
 }
