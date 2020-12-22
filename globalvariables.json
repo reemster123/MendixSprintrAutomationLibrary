@@ -6,7 +6,7 @@
     "extendedTimeOutWFS": 300000,
     "showProcesInBrowser": true, 
     "environment": "acceptance", 
-    "charToReplaceSpace": "_",
+    "charToReplaceSpace": ">",
     "myappsUrl": "https://sprintr.home.mendix.com/link/myapps"
 }
 
