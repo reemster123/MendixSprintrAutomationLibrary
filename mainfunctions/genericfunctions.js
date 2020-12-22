@@ -18,33 +18,30 @@ module.exports = {
         console.log('clicked next page...');
 
     },
-
     getElementForInnerText: async function(innertext, tagname, page) {
         const element = await page.evaluateHandle((name, tag) => {
-            const elements = document.getElementsByTagName(tag);
-            let i;
-            for (i=0;i<elements.length;i++) {
-                if (elements[i].innerText.toLowerCase().includes(name)) {
-                    return elements[i];
-                }
+            let elements = document.getElementsByTagName(tag);
+            elements = Array.from(elements);
+            el = elements.find(element => element.innerText.toLowerCase().includes(name));
+            if (typeof el !== 'undefined') {
+                return el;
             }
+            return null;
         }, innertext, tagname );
         return element;
-
     },
 
     getIdForInnerText: async function(innertext, tagname, page) {
         const elementId = await page.evaluate((name, tag) => { 
-            const elements = document.getElementsByTagName(tag);
-            let i;
-            for (i=0;i<elements.length;i++) {
-                if (elements[i].innerText.toLowerCase().includes(name)) {
-                    return elements[i].id;
-                }
-            }
+            let elements = document.getElementsByTagName(tag);
+            elements = Array.from(elements);
+            el = elements.find(element => element.innerText.toLowerCase().includes(name));
+            if (typeof el !== 'undefined') {
+                return el.id;
+            } 
+            return null;
         }, innertext, tagname );
-        return elementId;
-        
+        return elementId;   
     },
 
     clickOkOnPopupDialog: async function(page) {
@@ -60,26 +57,22 @@ module.exports = {
             document.getElementsByClassName('modal-footer mx-dialog-footer')[0].getElementsByTagName('button')[0].click();
         });
         console.log('Clicked "Okay"...');
-
     },
 
     // select a row from a datagrid for the rowtitle and parentDataview
     selectRow: async function(dvSelector, rowTitle, page) {
         rowSelected = await page.evaluate((name, selector) => {
             const dataview = document.querySelector(selector);
-            let IsSelected = false;       
-            const rows = dataview.getElementsByTagName('tr');
+            let IsSelected = false;   
+            let rows = dataview.getElementsByTagName('tr');
             if (rows != null) {
+                rows = Array.from(rows);
                 // if there is a name then find the row for that name
                 if (name != null) {
-                    let i;
-                    for (i=0; i<rows.length; i++) {
-                        const rowname = rows[i].getElementsByClassName('mx-left-aligned')[0].innerText.toLowerCase();
-                        if (rowname === name) {
-                            rows[i].click();
-                            IsSelected = true;
-                            break;
-                        }   
+                    const row = rows.find(element => element.getElementsByClassName('mx-left-aligned')[0].innerText.toLowerCase() === name);
+                    if (typeof row !== 'undefined') {
+                        row.click();
+                        IsSelected = true;
                     }
                 // if name is null then select the first row. 
                 } else {
@@ -89,8 +82,7 @@ module.exports = {
             }
             return IsSelected; 
         }, rowTitle, dvSelector);
-        return rowSelected; 
-
+    return rowSelected; 
     }
     //  *** extra functions here... ***
 }
