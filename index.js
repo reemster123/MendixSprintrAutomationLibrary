@@ -18,12 +18,7 @@ async function main() {
         //open a browser and setup the page and viewport
         console.log('Opening browser...');
         const browser = await puppeteer.launch({headless: !gv.showProcesInBrowser});
-        const page = await browser.newPage();
-        await page.setViewport ({
-            width: 1600,
-            height: 600
-        });
-        await page.setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36");
+        const page = await require('./mainfunctions/setuppage.js')(browser);
 
         //login with credentials
         await require('./mainfunctions/login.js')(page);
