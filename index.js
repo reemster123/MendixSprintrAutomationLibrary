@@ -6,8 +6,8 @@ const gv = require('./globalvariables.json');
 const puppeteer = require('puppeteer');
 
 // get arguments from commandline
-const appName = parseArgumentForIndex(2);
-const brancheName = parseArgumentForIndex(3);
+const appName = gf.parseArgumentForIndex(2);
+const brancheName = gf.parseArgumentForIndex(3);
 console.log('Appname: '+appName);
 console.log('Branchename: '+brancheName);
 
@@ -62,11 +62,6 @@ async function selectDeployablePackage(page) {
         const deploybutton = document.querySelectorAll('.gv_table')[0].getElementsByClassName('gv_row')[0].getElementsByClassName('gv_cell_Actions')[0].children[0].children[0].children[0];
         deploybutton.click();
     });                    
-}
-
-function parseArgumentForIndex(i) {
-    return process.argv[i].toLowerCase().split(gv.charToReplaceSpace).join(' ');
-
 }
 
 async function shutdown(page, browser) {
