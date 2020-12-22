@@ -5,7 +5,7 @@ const gf = require('./genericfunctions.js');
 // navigateToEnvironmentspage
 module.exports = async function(appName, page) {
     //navigate to the apps homepage.
-    const appfound = require('./navigateToApp.js')(appName, page);
+    const appfound = await require('./navigateToApp.js')(appName, page);
     if (appfound) { 
         // navigate to environmentspage of app.
         console.log('App with name "'+appName+'" exists...');
