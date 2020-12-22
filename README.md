@@ -45,7 +45,7 @@ The file uses two extra parameters [appname] and [branchename] so the command wi
 (..)/mendixdeploybot$ node index.js [appname] [branchename]
 
 please note that the appname nor branchename can have spaces inbetween, because else those separate words of the branche or appname will be 
-interpreted as separate parameters. So instead of a ' ' you have to type a '_'. So 'my branche name' needs to be typed as 'my_brance_name'.
+interpreted as separate parameters. So instead of a ' ' you have to type a '>'. So 'my branche name' needs to be typed as 'my>brance>name'.
 
 
 
@@ -57,7 +57,7 @@ define the timeoutlength (wait untill a certain element appears on the page befo
 try making these numbers bigger. The sprinter environment sometimes loads slow so a timeout could happen.
 2. by default it deploys to the acceptance environment. if you want to deploy to the 'test' or 'production' environment you can change the 'environment' attribute's value. 
 3. by default the script opens a browser so you can see what happens exactly. If you don't want this to happen you can change the 'showProcesInBrowser' attribute to false.
-4. if your appname by default uses the '_' character then you need to define another 'charToReplaceSpace'. You can do this overhere aswell.
+4. if your appname by default uses the '>' character then you need to define another 'charToReplaceSpace'. You can do this overhere aswell.
 
 
 
