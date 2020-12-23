@@ -106,7 +106,15 @@ module.exports = {
             listItems.find(item => item.getElementsByTagName('label')[0].innerText.toLowerCase() === env).click(); 
             console.info('clicked environment...');     
         }, dropdownMenu, gv.environment);
+    },
+    
+    shutdown: async function(page, browser) {
+        console.log('Deploybot shutting down...');
+        await page.close();
+        await browser.close();
     }
+
+    
     //  *** extra functions here... ***
 }
 
