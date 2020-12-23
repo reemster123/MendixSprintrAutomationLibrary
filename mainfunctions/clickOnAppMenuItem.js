@@ -1,11 +1,8 @@
 const gv = require('../globalvariables.json');
-const gf = require('./genericfunctions.js');
 
 module.exports = async function(elementId, page) {
     await page.waitForSelector(elementId, {timeout: gv.standardTimeOutWFS});       
     const envElement = await page.$(elementId);
-    // wait extra seconds for page to load, this page takes some time.
-    await gf.delay(gv.standardDelayAfterPageLoad);
     await goToUrlFromElement(envElement, page);
 
 }
