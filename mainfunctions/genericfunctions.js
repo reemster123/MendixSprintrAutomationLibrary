@@ -87,6 +87,20 @@ module.exports = {
     
     parseArgumentForIndex: function(i) {
         return process.argv[i].toLowerCase().split(gv.charToReplaceSpace).join(' ');
+    },
+    
+    selectItemFromDropdown: async function(page) {
+        const dropdownButton = await page.waitForSelector('.dropdown-button');
+        await dropdownButton.click();
+        console.log('Clicked dropdown menu...');
+        const dropdownMenu = await page.waitForSelector('.dropdown-menu');
+        await page.evaluate((menu, env) => {
+            let listItems = menu.getElementsByTagName('li');
+            listItems = Array.from(listItems);
+            console.info('found listItems: '+listItems);
+            listItems.find(item => item.getElementsByTagName('label')[0].innerText.toLowerCase() === env).click(); 
+            console.info('clicked environment...');     
+        }, dropdownMenu, gv.environment);
     }
     //  *** extra functions here... ***
 }
