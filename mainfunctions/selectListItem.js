@@ -18,7 +18,7 @@ module.exports = async function(itemName, page) {
                 break;    
             }
         }   else {
-            console.log('branche already selected. Stopping dowhileLoop');
+            console.log('row selected...');
         }
     } while (selectedItem === false);
     return selectedItem;
