@@ -1,4 +1,4 @@
-# MendixDeployBot
+# MendixSprintrAutomationLibrary
 
 SETUP REQUIRED
 
@@ -18,35 +18,45 @@ hit enter about 10 times untill you see a dollar sign again $
 
 step 4:
 
-install puppeteer, this is a prebuilt module the script uses to navigate throug a webpage.
-type 'npm install puppeteer' 
+install dependancies:
+- install puppeteer: type  'npm install puppeteer'  and hit Enter. this is a prebuilt module the script uses to navigate throug a webpage.
+- install downloads-folder: type:  'npm install downloads-folder'  and hit Enter. This modul we need to get the local downloads folder on your computer 
+(so it can locate the downloaded logfiles from sprintr).
 
 step 5:
-in de root folder create a file called 'credentials.json' and paste the following json in there:
+in the root folder, create a file called 'credentials.json' and paste the following json in there:
 
 {
     "username": "username",
     "password": "password"
 }
 
-Put your mendix sprinter credentials in there. this will be used to login to your mendix sprintr environment sothat 
-the script can select your app to deploy. 
-
-
-
+Put your mendix sprintr credentials in there. this will be used to login to your mendix sprintr environment sothat 
+the script can select your app to deploy etc.  
 
 
 
 RUN THE PROGRAM
 
-You can run the script from the commandline from the directory where the index.js file is located.
+This library contains multiple scripts you can run:
+- DeployBot: deploys de latest version of the given appname and brancheline to an environment of choice (acceptance is default)
+- GetLogfile: downloads and displays the a logfile for the appname and date.
+
+Deploybot:
+You can run the deploybot.js from the commandline from the directory where the file is located.
 The file uses two extra parameters [appname] and [branchename] so the command will look like this:
 
-(..)/mendixdeploybot$ node index.js [appname] [branchename]
+(..)/mendixdeploybot$ node deploybot.js [appname] [branchename]
 
 please note that the appname nor branchename can have spaces inbetween, because else those separate words of the branche or appname will be 
 interpreted as separate parameters. So instead of a ' ' you have to type a '>'. So 'my branche name' needs to be typed as 'my>brance>name'.
 
+Getlogfile:
+run the getlogfile.js from the commandline from the directory where the file is located.
+The file uses two extra parameters [appname] and [date] (formatted 'yyyy-dd-mm', they are also formatted like this on the mendix sprintr),
+so the command will look like this:
+
+(..)/mendixdeploybot$ node getlogfile.js [appname] [date]
 
 
 
