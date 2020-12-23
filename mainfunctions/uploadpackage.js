@@ -15,27 +15,9 @@ module.exports = async function(brancheName, page) {
     await page.waitForSelector('#mxui_widget_DataGrid_0', {timeout: gv.extendedTimeOutWFS});
     await page.waitForSelector('.mx-datagrid-body', {timeout: gv.standardTimeOutWFS});
     console.log("branchelist is visible...");
-    await gf.delay(gv.standardDelayAfterFunction);
     
-    selectedBranche = false;
-    do {
-        //select the branche name from the list of branchenames
-        selectedBranche = await gf.selectRow('tbody[class="mx-datagrid-body"]', brancheName, page);
-        await gf.delay(gv.standardDelayAfterFunction);
-        // click 'next list' if the branche has not been selected yet
-        if (selectedBranche === false) {
-            const lastpage = await checkIfLastPage('mx-name-paging-next', page);
-            if (!lastpage) {
-                await gf.clickNext('.mx-name-paging-next', page);
-                await gf.delay(gv.standardDelayAfterFunction);
-            } else {
-                console.log('brancheName "'+brancheName+'" found...');
-                break;    
-            }
-        }   else {
-            console.log('branche already selected. Stopping dowhileLoop');
-        }
-    } while (selectedBranche === false);
+    await gf.delay(gv.standardDelayAfterFunction);
+    const selectedBranche = await require('./selectListItem.js')(brancheName, page);
 
     // if branche is selected then click 'next'
     if (selectedBranche) {
@@ -70,24 +52,4 @@ async function setVersionNumbers(page) {
             }
         }
     });
-}
-
-async function checkIfLastPage(classname, page) {
-    console.log('trying to check if it is lastpage...')
-    const isLastPage = await page.evaluate((classname) => {
-        let isLastPage = false;
-        const expectedValue = 'disabled';
-        const nextbutton = document.getElementsByClassName(classname)[0];
-        console.info('Next button: '+nextbutton.innerHTML);
-        const hasAttribute = nextbutton.hasAttribute(expectedValue);
-        if (hasAttribute) {
-            const attValue = nextbutton.getAttribute(expectedValue);
-            if(attValue === expectedValue) {
-                isLastPage = true;
-            } 
-        }
-        return isLastPage; 
-    }, classname);
-    console.log('isLastPage = '+isLastPage+'...');
-    return isLastPage;
 }
