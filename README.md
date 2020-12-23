@@ -47,7 +47,7 @@ Deploybot:
 You can run the deploybot.js from the commandline from the directory where the file is located.
 The file uses two extra parameters [appname] and [branchename] so the command will look like this:
 
-(..)/mendixdeploybot$ node deploybot.js [appname] [branchename]
+(..)/MendixSprintrAutomationLibrary$ node deploybot.js [appname] [branchename]
 
 please note that the appname nor branchename can have spaces inbetween, because else those separate words of the branche or appname will be 
 interpreted as separate parameters. So instead of a ' ' you have to type a '>'. So 'my branche name' needs to be typed as 'my>brance>name'.
@@ -57,7 +57,7 @@ run the getlogfile.js from the commandline from the directory where the file is 
 The file uses two extra parameters [appname] and [date] (formatted 'yyyy-dd-mm', they are also formatted like this on the mendix sprintr),
 so the command will look like this:
 
-(..)/mendixdeploybot$ node getlogfile.js [appname] [date]
+(..)/MendixSprintrAutomationLibrary$ node getlogfile.js [appname] [date]
 
 
 
