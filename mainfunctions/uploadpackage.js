@@ -5,7 +5,6 @@ const gf = require('./genericfunctions.js');
 module.exports = async function(brancheName, page) {
     let packageUploaded = false;
     await page.waitForSelector("#mxui_widget_Wrapper_2", {timeout: gv.standardTimeOutWFS});
-    console.log('clicking upload package button...');
     const packagebutton = await page.evaluate(() => {return document.getElementById('mxui_widget_Wrapper_2').innerText});
     await gf.delay(gv.standardDelayAfterFunction);
     await page.hover('#mxui_widget_Wrapper_2');
