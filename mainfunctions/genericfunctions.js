@@ -71,7 +71,12 @@ module.exports = {
                 if (name != null) {
                     const row = rows.find(element => element.getElementsByClassName('mx-left-aligned')[0].innerText.toLowerCase() === name);
                     if (typeof row !== 'undefined') {
-                        row.click();
+                        // it could be that the row is already selected by default.
+                        if (row.classList.contains('selected')) {
+                            console.info('row is already selected');
+                        } else {
+                            row.click();
+                        }
                         IsSelected = true;
                     }
                 // if name is null then select the first row. 
