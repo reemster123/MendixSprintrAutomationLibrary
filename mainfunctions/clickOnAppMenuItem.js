@@ -14,8 +14,8 @@ async function goToUrlFromElement(envElement, page) {
     const anchorTagHtml = await page.evaluate((env)=> { 
         return env.children[0].innerHTML;
     }, envElement);
-    console.log('navigating to page of menuItem...');
+    console.log('clicked on menuItem...');
     let envLink = anchorTagHtml.split("\"")[1].split("\"")[0];
-    console.log('envUrl: '+envLink );
+    console.log('Link for menuItem: '+envLink+'...' );
     await page.goto(envLink, {waitUntil: 'networkidle2'} );
 }
