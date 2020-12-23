@@ -24,6 +24,7 @@ install dependancies:
 (so it can locate the downloaded logfiles from sprintr).
 
 step 5:
+
 in the root folder, create a file called 'credentials.json' and paste the following json in there:
 
 {
