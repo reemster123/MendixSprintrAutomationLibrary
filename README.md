@@ -14,7 +14,7 @@ example 'cd desktop/programming/mendixdeploybot
 step 3:
 
 make the project ready for use with npm. Type: 'npm init'
-hit enter multiple times (6 or 7 times) untill you see a dollar sign again $
+hit enter about 10 times untill you see a dollar sign again $
 
 step 4:
 
