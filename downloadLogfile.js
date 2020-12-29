@@ -43,12 +43,11 @@ async function main() {
                 await downloadButton.click();
                 console.log('Clicked downloadbutton...');
                 await gf.delay(gv.standardDelayAfterPageLoad);
-                await require('./mainfunctions/logPathToFile.js')('logs', date);
+                await require('./mainfunctions/logPathToFile.js')('logs', date, true);
             }
-            
         }
 
-        await gf.delay(gv.standardDelayAfterPageLoad);
+        await gf.delay(gv.longProcesTimeout);
         await gf.shutdown(page, browser);
     } catch (err) {
         console.log('Something went wrong: '+err);
