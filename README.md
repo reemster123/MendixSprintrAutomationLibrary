@@ -40,14 +40,14 @@ the script can select your app to deploy etc.
 RUN THE PROGRAM
 
 This library contains multiple scripts you can run:
-- DeployBot: deploys de latest version of the given appname and brancheline to an environment of choice (acceptance is default)
-- GetLogfile: downloads and displays the a logfile for the appname and date.
+- deployApp: deploys de latest version of the given appname and brancheline to an environment of choice (acceptance is default)
+- downloadLogfile: downloads and displays the logfile for the appname and date.
 
 Deploybot:
 You can run the deploybot.js from the commandline from the directory where the file is located.
 The file uses two extra parameters [appname] and [branchename] so the command will look like this:
 
-(..)/MendixSprintrAutomationLibrary$ node deploybot.js [appname] [branchename]
+(..)/MendixSprintrAutomationLibrary$ node deployApp.js [appname] [branchename]
 
 please note that the appname nor branchename can have spaces inbetween, because else those separate words of the branche or appname will be 
 interpreted as separate parameters. So instead of a ' ' you have to type a '>'. So 'my branche name' needs to be typed as 'my>brance>name'.
@@ -57,7 +57,7 @@ run the getlogfile.js from the commandline from the directory where the file is 
 The file uses two extra parameters [appname] and [date] (formatted 'yyyy-dd-mm', they are also formatted like this on the mendix sprintr),
 so the command will look like this:
 
-(..)/MendixSprintrAutomationLibrary$ node getlogfile.js [appname] [date]
+(..)/MendixSprintrAutomationLibrary$ node downloadLogfile.js [appname] [date]
 
 
 
