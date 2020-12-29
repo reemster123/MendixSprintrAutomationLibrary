@@ -8,10 +8,10 @@ const dlf = formatDirPath(downloadFolder());
 const readdir = util.promisify(fs.readdir);
 const readfile = util.promisify(fs.readFile);
 
-module.exports = async function(date) {
+module.exports = async function(startsWith, regex) {
     console.log('checking for logfile in '+dlf+'...');
     const files = await readdir(dlf);
-    const filename = files.find(f => (f.startsWith('logs') && f.includes(date)));
+    const filename = files.find(f => (f.startsWith(startsWith) && f.includes(regex)));
     if (typeof filename !== 'undefined') {
         const pathToFile = dlf +'/'+filename
         const contents = await readfile(pathToFile, 'utf8');
