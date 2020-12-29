@@ -1,4 +1,4 @@
-// this file gets the downloaded logfile from the downloads folder and logs it in the terminal (or cmd)
+// this file gets the downloaded file from the downloads folder and logs it in the terminal (or cmd)
 
 const fs = require('fs');
 const util = require('util');
@@ -8,19 +8,22 @@ const dlf = formatDirPath(downloadFolder());
 const readdir = util.promisify(fs.readdir);
 const readfile = util.promisify(fs.readFile);
 
-module.exports = async function(startsWith, regex) {
+module.exports = async function(startsWith, regex, logcontent) {
     console.log('checking for logfile in '+dlf+'...');
+
     const files = await readdir(dlf);
-    const filename = files.find(f => (f.startsWith(startsWith) && f.includes(regex)));
+    const filename = files.find(f => (f.startsWith(startsWith) && f.match(regex)));
     if (typeof filename !== 'undefined') {
         const pathToFile = dlf +'/'+filename
         const contents = await readfile(pathToFile, 'utf8');
-        console.log(contents);
+        if (logcontent) {
+            console.log(contents);
+        }
         console.log('file location: '+pathToFile);
-        return true;
+        return pathToFile;
     } else {
         console.log('file not found...');
-        return false;
+        return null;
     }
 }
 
