@@ -43,7 +43,7 @@ async function main() {
                 await downloadButton.click();
                 console.log('Clicked downloadbutton...');
                 await gf.delay(gv.standardDelayAfterPageLoad);
-                await require('./mainfunctions/logPathToFile.js')('logs', date, true);
+                await require('./mainfunctions/logPathToFile.js')('logs', date, gv.longProcesTimeout, true);
             }
         }
 
