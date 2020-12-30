@@ -2,29 +2,46 @@
 
 const fs = require('fs');
 const util = require('util');
+const gf = require('./genericfunctions.js');
+const gv = require('../globalvariables.json');
 const downloadFolder = require('downloads-folder');
 const dlf = formatDirPath(downloadFolder());
 // promisify the fs methods. sothat we can await until the value is returned.
 const readdir = util.promisify(fs.readdir);
 const readfile = util.promisify(fs.readFile);
 
-module.exports = async function(startsWith, regex, logcontent) {
+module.exports = async function(startsWith, regex, procesTimeout, logcontent) {
     console.log('checking for logfile in '+dlf+'...');
+    const filename = await promiseFileName(procesTimeout);
+    async function promiseFileName(timeout) {
+        // wait for the filename to appear in the downloadsfolder.
+        console.log('Waiting for download to finish...');
+        let dbName;
+        let starttime = 0; 
+        do {
+            await gf.delay(gv.standardDelayAfterPageLoad);
+            const files = await readdir(dlf);
+            dbName = files.find(f => (f.startsWith(startsWith) && f.match(regex)));
+            starttime += gv.standardDelayAfterPageLoad;
+            if (starttime >= timeout) {
+                console.log('promiseFileName times out, breaking loop');
+                dbName = null;
+                break;
+            } 
+        } while (typeof dbName === 'undefined');
+        return dbName;
+    }
 
-    const files = await readdir(dlf);
-    const filename = files.find(f => (f.startsWith(startsWith) && f.match(regex)));
-    if (typeof filename !== 'undefined') {
-        const pathToFile = dlf +'/'+filename
-        const contents = await readfile(pathToFile, 'utf8');
+    if (typeof filename !== null) {
+        const pathToFile = dlf +'/'+filename;
         if (logcontent) {
+            const contents = await readfile(pathToFile, 'utf8');
             console.log(contents);
         }
         console.log('file location: '+pathToFile);
         return pathToFile;
-    } else {
-        console.log('file not found...');
-        return null;
     }
+    return null;
 }
 
 function formatDirPath(dirpath) {
