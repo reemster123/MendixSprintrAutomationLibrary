@@ -9,7 +9,7 @@ Install Node on your computer: https://nodejs.org/en/download/
 step 2:
 
 Open CMD (windows) or Terminal (Mac) and go to the folder of the mendixdeploybot.
-example 'cd desktop/programming/mendixdeploybot
+example 'cd desktop/programming/MendixSprintrAutomationLibrary
 
 step 3:
 
@@ -42,9 +42,10 @@ RUN THE PROGRAM
 This library contains multiple scripts you can run:
 - deployApp: deploys de latest version of the given appname and brancheline to an environment of choice (acceptance is default)
 - downloadLogfile: downloads and displays the logfile for the appname and date.
+- downloadDb: this downloads a backup from the sprintrEnvironment for the appname and date. 
 
-Deploybot:
-You can run the deploybot.js from the commandline from the directory where the file is located.
+DeployApp:
+You can run the deployboyApp.js from the commandline from the directory where the file is located.
 The file uses two extra parameters [appname] and [branchename] so the command will look like this:
 
 (..)/MendixSprintrAutomationLibrary$ node deployApp.js [appname] [branchename]
@@ -52,12 +53,19 @@ The file uses two extra parameters [appname] and [branchename] so the command wi
 please note that the appname nor branchename can have spaces inbetween, because else those separate words of the branche or appname will be 
 interpreted as separate parameters. So instead of a ' ' you have to type a '>'. So 'my branche name' needs to be typed as 'my>brance>name'.
 
-Getlogfile:
-run the getlogfile.js from the commandline from the directory where the file is located.
+DownloadLogfile:
+run the downloadLogfile.js from the commandline from the directory where the file is located.
 The file uses two extra parameters [appname] and [date] (formatted 'yyyy-dd-mm', they are also formatted like this on the mendix sprintr),
 so the command will look like this:
 
 (..)/MendixSprintrAutomationLibrary$ node downloadLogfile.js [appname] [date]
+
+DownloadDb:
+run the downloadDb.js from the commandline from the directory where the file is located (root).
+The file uses two extra parameters [appname] and [date] (formatted 'yyyy-dd-mm', they are also formatted like this on the mendix sprintr),
+so the command will look like this:
+
+(..)/MendixSprintrAutomationLibrary$ node downloadDb.js [appname] [date]
 
 
 
