@@ -9,7 +9,7 @@ Install Node on your computer: https://nodejs.org/en/download/
 step 2:
 
 Open CMD (windows) or Terminal (Mac) and go to the folder of the mendixdeploybot.
-example 'cd desktop/programming/mendixdeploybot
+example 'cd desktop/programming/MendixSprintrAutomationLibrary
 
 step 3:
 
