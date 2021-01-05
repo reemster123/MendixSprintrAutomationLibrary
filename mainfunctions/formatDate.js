@@ -21,9 +21,9 @@ swapELements = (arr, i1, i2) => {
     return da;
 }
 returnMonthForNumber = (n) => {
-    const num = n-1;
+    const i = n-1;
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
-    return months[num];
+    return months[i];
 }
 
 removeLeadingZero = (date) => {
