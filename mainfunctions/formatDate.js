@@ -8,7 +8,7 @@ module.exports = (dateString) => {
     console.log(monthNr);
     fda[1] = returnMonthForNumber(monthNr);
     fda = fda.join(' ');
-    return fda;
+    return removeLeadingZero(fda);
 }
 
 // swap the elements in arr for two index values. 
@@ -24,6 +24,12 @@ returnMonthForNumber = (n) => {
     const num = n-1;
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Okt','Nov','Dec'];
     return months[num];
+}
+
+removeLeadingZero = (date) => {
+    if (date.startsWith('0')) {
+        return date.substring(1);
+    } else return date;
 }
 
 
