@@ -11,7 +11,7 @@ const readdir = util.promisify(fs.readdir);
 const readfile = util.promisify(fs.readFile);
 
 module.exports = async function(startsWith, regex, procesTimeout, logcontent) {
-    console.log('checking for logfile in '+dlf+'...');
+    console.log('checking for file in '+dlf+'...');
     const filename = await promiseFileName(procesTimeout);
     async function promiseFileName(timeout) {
         // wait for the filename to appear in the downloadsfolder.
