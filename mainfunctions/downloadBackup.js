@@ -35,7 +35,7 @@ module.exports = async (appName, date, page) => {
                 if (clickedDbOnly) { 
                     console.log('Clicked "Database Only"');
                     await gf.delay(gv.standardDelayAfterFunction);
-                    const downloadStarted = require('./startDbDownload.js')(popupDialog, page);
+                    const downloadStarted = await require('./startDbDownload.js')(popupDialog, page);
                     await gf.delay(gv.standardDelayAfterFunction);
                     if (downloadStarted) {
                         // the date in the filetitle is formatted yyyymmdd+'[0-9]{4}' (+ 4 other digits for the time which we don't use)
