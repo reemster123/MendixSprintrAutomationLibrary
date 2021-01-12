@@ -1,4 +1,4 @@
-// Input = 'YYYY-MM-DD' Output = 'DD Mon YYYY' 
+// Input = 'YYYY-MM-DD' Output = 'D Mon YYYY' 
 
 module.exports = (dateString) => {
     // fda = formattedDateArray
@@ -8,7 +8,9 @@ module.exports = (dateString) => {
     console.log(monthNr);
     fda[1] = returnMonthForNumber(monthNr);
     fda = fda.join(' ');
-    return removeLeadingZero(fda);
+    const formattedDate = removeLeadingZero(fda);
+    console.log('formattedDate: '+formattedDate) 
+    return formattedDate;
 }
 
 // swap the elements in arr for two index values. 
