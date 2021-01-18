@@ -28,7 +28,7 @@ async function main() {
             console.log('We are now on the apps homepage...');
             await gf.delay(gv.standardDelayAfterPageLoad);
             // click on the "logs" menu item.
-            await require('./mainfunctions/clickOnAppMenuItem')('#formatstring_widget_formatstring_19' , page);
+            await require('./mainfunctions/clickOnAppMenuItem')('.mx-name-container21.submenu-group', 2, page);
             await gf.delay(gv.standardDelayAfterPageLoad);
             
             await gf.selectItemFromDropdown(page);
