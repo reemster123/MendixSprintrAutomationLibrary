@@ -13,7 +13,7 @@ module.exports = async (appName, date, page) => {
             console.log('We are now on the apps homepage...');
             await gf.delay(gv.standardDelayAfterPageLoad);
             // click on the "backups" menu item.
-            await require('./clickOnAppMenuItem')('#formatstring_widget_formatstring_20' , page);
+            await require('./clickOnAppMenuItem')('.mx-name-container21.submenu-group' , 3, page);
             await gf.delay(gv.standardDelayAfterPageLoad);
             console.log('We are now on the "Backups" page...');
             await gf.selectItemFromDropdown(page);
