@@ -9,7 +9,7 @@ module.exports = async function(appName, page) {
     if (appfound) { 
         console.log('App with name "'+appName+'" exists...');
         // go to the environments page
-        await require('./clickOnAppMenuItem')('#formatstring_widget_formatstring_14', page);
+        await require('./clickOnAppMenuItem')('.mx-name-container4.submenu-group', 0, page);
         console.log('We are now on the environments page...');
     } else {
         console.log('Appname not found...');
