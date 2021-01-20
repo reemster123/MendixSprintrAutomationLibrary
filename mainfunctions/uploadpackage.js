@@ -46,7 +46,7 @@ async function setVersionNumbers(page) {
         const inputfields = versionView.getElementsByTagName('input'); 
         let i;
         for (i=0; i< inputfields.length; i++) {
-            if (inputfields[i].value === null) {
+            if (inputfields[i].value === null || inputfields[i].value === '' ) {
                 inputfields[i].value = '1';
             }
         }
