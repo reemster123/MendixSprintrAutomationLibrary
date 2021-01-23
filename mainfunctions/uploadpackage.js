@@ -59,10 +59,7 @@ setversionNumber = async (index, page) => {
     }, index);
 
     if (input) {
-        console.info('input value is null...');
         await input.type('1');
-    } else {
-        console.info('input is already filled in...');
     }
 
 
