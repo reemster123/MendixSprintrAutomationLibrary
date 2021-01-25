@@ -49,21 +49,35 @@ async function setVersionNumbers(page) {
 }
 // check if the input already has a value, if it does not. then change the value to 1. 
 setversionNumber = async (index, page) => {
-    let input = await page.evaluateHandle((i) => {
+    const isEmpty = await page.evaluate((i) => {
         const versionView = document.getElementsByClassName("mx-dataview mx-name-dataView9")[0]; 
         const inputfield =  versionView.getElementsByTagName('input')[i]; 
         if (inputfield.value === null || inputfield.value === '' ) {
-                return inputfield;
+                console.info('input is empty');
+                return true;
             } 
-        return null;
+        console.info('input is filled');
+        return false;
     }, index);
 
-    if (input) {
+    if (isEmpty) {
+        console.info('input is empty');
+        const input = await page.evaluateHandle((i)=> {
+            const versionView = document.getElementsByClassName("mx-dataview mx-name-dataView9")[0]; 
+            return versionView.getElementsByTagName('input')[i]; 
+        }, index);
         await input.type('1');
+    } else {
+        console.info('input is filled');
     }
 
 
 }
+
+
+
+
+
 
 
 
