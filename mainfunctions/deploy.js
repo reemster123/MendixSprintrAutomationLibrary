@@ -65,12 +65,16 @@ module.exports = async function(page) {
             
         } else {
             console.log('ContinueButton not found. Starting alternative process...');
+     
             await gf.delay(gv.standardDelayAfterFunction);
-            await page.waitForSelector('span[title="Environments"]');
-            await page.evaluate(()=>{
-                return document.querySelector('span[title="Environments"]').children[0].click();
-            });
-            console.log('environments button clicked...');
+            const layout = await page.waitForSelector('.mx-layoutcontainer-center.mx-scrollcontainer-center');
+            const envId = await page.evaluate((layout) => { 
+                return layout.querySelector('.mx-name-container3.submenu-group')
+                .getElementsByTagName('a')[0]
+                .parentElement
+                .id;
+            } ,layout);
+            await page.click('#'+envId);
             await gf.delay(gv.standardDelayAfterPageLoad);
             await page.waitForSelector('.cloud-environment-mode');
             await page.evaluate((env)=> {
