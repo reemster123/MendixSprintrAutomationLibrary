@@ -47,7 +47,7 @@ async function main() {
             }
         }
 
-        await gf.delay(gv.longProcesTimeout);
+        await gf.delay(gv.standardDelayAfterPageLoad);
         await gf.shutdown(page, browser);
     } catch (err) {
         console.log('Something went wrong: '+err);
