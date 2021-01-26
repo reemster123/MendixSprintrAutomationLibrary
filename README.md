@@ -29,12 +29,17 @@ in the root folder, create a file called 'credentials.json' and paste the follow
 
 {
     "username": "username",
-    "password": "password"
+    "password": "yourSprintrPassword",
+    "pgAdminUrl": "http://[IP-localhost]:[port]/?key=[key]",
+    "pgAdminPass": "yourPgAdminPassword"
 }
 
-Put your mendix sprintr credentials in there. this will be used to login to your mendix sprintr environment sothat 
-the script can select your app to deploy etc.  
+Where 
+[IP-localhost]  = most of the time 127.0.0.1, but you can find this number by launching pgAdmin in the webbrowser and clicking on the url.
+[port] = launch pgAdmin in the webbrowser and click on the url. Some numbers will appear in the url on the place where [port] stands in the example above. 
+[key] = launch pgAdmin, enter password. Then go to cookies in your browser for this page. Copy the value for  PGADMIN_INT_KEY
 
+Everytime you shutdown the pgAdmin server the key and port are deleted, so i just have it running all the time on my computer. Only after restarting my computer i have to refresh these attributes in the credentials file.
 
 
 RUN THE PROGRAM
@@ -43,6 +48,7 @@ This library contains multiple scripts you can run:
 - deployApp: deploys de latest version of the given appname and brancheline to an environment of choice (acceptance is default)
 - downloadLogfile: downloads and displays the logfile for the appname and date.
 - downloadDb: this downloads a backup from the sprintrEnvironment for the appname and date. 
+- UploadBackupToPgAdmin: this downloads a backup from sprintr environment and restores it in pgAdmin
 
 DeployApp:
 You can run the deployboyApp.js from the commandline from the directory where the file is located.
@@ -67,6 +73,13 @@ so the command will look like this:
 
 (..)/MendixSprintrAutomationLibrary$ node downloadDb.js [appname] [date]
 
+UploadBackupToPgAdmin:
+This script uses the same parameters as DownloadDB.
+so the command will look like this:
+
+(..)/MendixSprintrAutomationLibrary$ node UploadBackupToPgAdmin.js [appname] [date]
+
+
 
 
 PERSONAL SETTINGS (and in case of errors, read this)
@@ -84,6 +97,7 @@ try making these numbers bigger. The sprinter environment sometimes loads slow s
 LIMITATIONS & KNOWN BUGS
 
 1. If the sprinter environment itself encountered an error (like: "there was an error restarting the app") This wil not be handled. Since this should not occur 99% of the time.
+2. The pgAdmin part is created and tested on pgAdmin version 4.18
 
  
  
