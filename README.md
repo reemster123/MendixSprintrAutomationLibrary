@@ -51,7 +51,7 @@ The file uses two extra parameters [appname] and [branchename] so the command wi
 (..)/MendixSprintrAutomationLibrary$ node deployApp.js [appname] [branchename]
 
 please note that the appname nor branchename can have spaces inbetween, because else those separate words of the branche or appname will be 
-interpreted as separate parameters. So instead of a ' ' you have to type a '>'. So 'my branche name' needs to be typed as 'my>brance>name'.
+interpreted as separate parameters. So instead of a ' ' you have to type a '.' So 'my branche name' needs to be typed as 'my.branche.name'.
 
 DownloadLogfile:
 run the downloadLogfile.js from the commandline from the directory where the file is located.
@@ -84,6 +84,6 @@ try making these numbers bigger. The sprinter environment sometimes loads slow s
 LIMITATIONS & KNOWN BUGS
 
 1. If the sprinter environment itself encountered an error (like: "there was an error restarting the app") This wil not be handled. Since this should not occur 99% of the time.
-2. After uploading a package, the sprinter environment sometimes fails to refresh so it could timeout on finding the 'deploy' button.
+
  
  

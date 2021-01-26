@@ -40,15 +40,45 @@ module.exports = async function(brancheName, page) {
 
 async function setVersionNumbers(page) {
     console.log('setting versionnumbers...');
-    await page.waitForSelector('#mxui_widget_DataView_43');
-    await page.evaluate(() => {
-        const versionView = document.getElementsByClassName("mx-dataview mx-name-dataView9")[0]; 
-        const inputfields = versionView.getElementsByTagName('input'); 
-        let i;
-        for (i=0; i< inputfields.length; i++) {
-            if (inputfields[i].value === null) {
-                inputfields[i].value = '1';
-            }
-        }
-    });
+    await page.waitForSelector('.mx-dataview.mx-name-dataView9');
+    await setversionNumber(0, page);
+    await setversionNumber(1, page);
+    await setversionNumber(2, page);
+    console.log('done');
+
 }
+// check if the input already has a value, if it does not. then change the value to 1. 
+setversionNumber = async (index, page) => {
+    const isEmpty = await page.evaluate((i) => {
+        const versionView = document.getElementsByClassName("mx-dataview mx-name-dataView9")[0]; 
+        const inputfield =  versionView.getElementsByTagName('input')[i]; 
+        if (inputfield.value === null || inputfield.value === '' ) {
+                console.info('input is empty');
+                return true;
+            } 
+        console.info('input is filled');
+        return false;
+    }, index);
+
+    if (isEmpty) {
+        console.info('input is empty');
+        const input = await page.evaluateHandle((i)=> {
+            const versionView = document.getElementsByClassName("mx-dataview mx-name-dataView9")[0]; 
+            return versionView.getElementsByTagName('input')[i]; 
+        }, index);
+        await input.type('1');
+    } else {
+        console.info('input is filled');
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
