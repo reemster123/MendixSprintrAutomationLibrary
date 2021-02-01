@@ -1,6 +1,7 @@
 // this file defines some generic functions which are used by multiple epics. 
 
 const gv = require('../globalvariables.json');
+const fs = require('fs').promises;
 
 module.exports = {
     // delay function (sleep for amount of miliseconds)
@@ -37,7 +38,14 @@ module.exports = {
         const element = await page.evaluateHandle((name, tag, parent) => {
             let elements = parent.getElementsByTagName(tag);
             elements = Array.from(elements);
-            el = elements.find(element => element.innerText.toLowerCase().includes(name));
+            elements.map(el => console.log(el.innerText));
+            el = elements.find(element => {
+                if (element !== null){
+                    console.log(element);
+                    return element.innerText.toLowerCase().includes(name);
+                }
+                return false;
+            });
             if (typeof el !== 'undefined') {
                 return el;
             }
@@ -156,6 +164,13 @@ module.exports = {
         console.log('Deploybot shutting down...');
         await page.close();
         await browser.close();
+    },
+
+    setCookies: async(url, page) => {
+        const newCookies = await page.cookies(url);
+        await fs.writeFile('./cookies.json', JSON.stringify(newCookies));
+        console.log('Setting cookies done...');
+    
     }
 
     //  *** extra functions here... ***
