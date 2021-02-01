@@ -7,6 +7,7 @@
     "showProcesInBrowser": true, 
     "environment": "acceptance", 
     "charToReplaceSpace": ".",
-    "myappsUrl": "https://sprintr.home.mendix.com/link/myapps"
+    "myappsUrl": "https://sprintr.home.mendix.com/link/myapps",
+    "pgRoleName": "postgres"
 }
 
