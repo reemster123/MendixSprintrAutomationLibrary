@@ -61,14 +61,14 @@ interpreted as separate parameters. So instead of a ' ' you have to type a '.' S
 
 DownloadLogfile:
 run the downloadLogfile.js from the commandline from the directory where the file is located.
-The file uses two extra parameters [appname] and [date] (formatted 'yyyy-dd-mm', they are also formatted like this on the mendix sprintr),
+The file uses two extra parameters [appname] and [date] (formatted 'yyyy-mm-dd', they are also formatted like this on the mendix sprintr),
 so the command will look like this:
 
 (..)/MendixSprintrAutomationLibrary$ node downloadLogfile.js [appname] [date]
 
 DownloadDb:
 run the downloadDb.js from the commandline from the directory where the file is located (root).
-The file uses two extra parameters [appname] and [date] (formatted 'yyyy-dd-mm', they are also formatted like this on the mendix sprintr),
+The file uses two extra parameters [appname] and [date] (formatted 'yyyy-mm-dd', they are also formatted like this on the mendix sprintr),
 so the command will look like this:
 
 (..)/MendixSprintrAutomationLibrary$ node downloadDb.js [appname] [date]
