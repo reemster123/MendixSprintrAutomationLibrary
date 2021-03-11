@@ -1,6 +1,6 @@
 # MendixSprintrAutomationLibrary
 
-**** IMPORTANT NOTE: DOES NOT WORK (YET) FOR PRODUCTION ENVIRONMENTS (due to mostly 2fa issues) ****
+**** IMPORTANT: THIS LIBRARY IS DEPRICATED. USE THIS ONE INSTEAD: https://github.com/reemster123/MendixSprintrAutomationLibWithApis ****
 
 SETUP REQUIRED
 
